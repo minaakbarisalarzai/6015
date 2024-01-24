@@ -1,0 +1,42 @@
+#Rule to compile the source files. 
+#build: main.cpp Clothing.cpp Caps.cpp Pants.cpp
+#	c++ main.cpp Clothing.cpp Caps.cpp Pants.cpp -o my_program
+
+#Rename
+build: my_program
+	
+my_program: main.cpp Clothing.cpp Caps.cpp Pants.cpp
+	c++ -o my_program main.cpp Clothing.cpp Caps.cpp Pants.cpp
+
+# Target: clean (remove all generated files)
+clean:
+	rm -rf my_program
+.PHONY: clean
+
+# List of source files
+SRCS := main.cpp Clothing.cpp Caps.cpp Pants.cpp
+
+# Generate corresponding object file names
+OBJS := $(SRCS:.cpp=.o)
+
+# Target: my_program (executable)
+# Purpose: Compile the source files and link them to create the executable program.
+my_program: $(OBJS)
+	g++ -o my_program $(OBJS)
+
+# Rule to compile each .cpp file into a .o file
+# Purpose: Compile each source file into an object file.
+%.o: %.cpp %.h
+	g++ -c $< -o $@
+
+# Target: run (run the executable)
+# Purpose: Execute the compiled program.
+run: my_program
+	./my_program
+
+# Target: clean (remove all generated files)
+# Purpose: Clean up the project by removing the executable and object files.
+#cleanObjectFiles:
+#	rm -rf my_program $(OBJS)
+
+#.PHONY: build clean
