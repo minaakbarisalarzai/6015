@@ -26,6 +26,22 @@ bool Num::equals(Expr *e) {
 }
 
 
+int Num::interp() {
+    return val;
+}
+
+
+bool Num::has_variable() {
+    return false;
+}
+
+Expr* Num::subst(const std::string&, Expr* replacement) {
+    //Return a new Num object with the same value (val) as the original Num.
+    //return this
+    return this;
+    //return new Num(val);
+}
+
 //  ========================== ADD CLASS =======================  //
 
 // Constructor implementation
@@ -42,6 +58,26 @@ bool Add::equals(Expr* e){
         return lhs->equals(otherAdd->lhs) && rhs->equals(otherAdd->rhs);
     }
     return false;
+}
+
+
+int Add::interp() {
+    //The sum of the interpreted values of the left-hand side and the right-hand side
+    return lhs->interp() + rhs->interp();
+}
+
+
+bool Add::has_variable() {
+    //If either side has a variable
+    return lhs->has_variable() || rhs->has_variable();
+}
+
+
+Expr* Add::subst(const std::string& varName, Expr* replacement) {
+    // Recursively substitute in the left and right operands
+    //The lhs and rhs operands of the new Add expression are the results of substituting the variable (varName) with the replacement expression (replacement) in the original operands
+    
+    return new Add(lhs->subst(varName, replacement), rhs->subst(varName, replacement));
 }
 
 //  ========================== MULT CLASS =======================  //
@@ -62,6 +98,23 @@ bool Mult::equals(Expr* e) {
     return false;
 }
 
+int Mult::interp() {
+    //The product of the interpreted values of the left-hand side and the right-hand side
+    return lhs->interp() * rhs->interp();
+}
+
+bool Mult::has_variable() {
+    //Return if either side has a variable
+    return lhs->has_variable() || rhs->has_variable();
+}
+
+
+Expr* Mult::subst(const std::string& varName, Expr* replacement) {
+    // Recursively substitute in the left and right operands
+    //The lhs and rhs operands of the new Mult expression are the results of substituting the variable (varName) with the replacement expression (replacement) in the original operands
+    return new Mult(lhs->subst(varName, replacement), rhs->subst(varName, replacement));
+}
+
 //  ======================== Variable CLASS =====================  //
 
 // Constructor implementation
@@ -74,6 +127,29 @@ bool Variable::equals(Expr *e) {
         return name == other->name;
     }
     return false;
+}
+
+
+int Variable::interp() {
+    // Throws a runtime error
+    throw std::runtime_error("No value for variable");
+}
+
+bool Variable::has_variable() {
+    //Always true
+    return true;
+}
+
+Expr* Variable::subst(const std::string& varName, Expr* replacement) {
+    if (name == varName) {
+        // If the variable name matches the specified variable name, return the replacement expression
+        return replacement;
+    } else {
+        // If the variable name does not match, create a new Variable expression with the same name
+        //Return this
+        return this;
+        //return new Variable(name);
+    }
 }
 
 //  ============================= END ==========================  //

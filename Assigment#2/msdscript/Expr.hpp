@@ -7,6 +7,9 @@ class Expr {
 public:
     virtual bool equals(Expr *e) = 0;
     virtual ~Expr();
+    virtual int interp()=0;
+    virtual bool has_variable()=0;
+    virtual Expr* subst(const std::string& varName, Expr* replacement)=0;
 };
 
 //  ========================== NUM CLASS =======================  //
@@ -18,6 +21,10 @@ public:
     Num(int val);
     // Declaration of equals method
     virtual bool equals(Expr *e) override;
+    // Declaration of the interp method
+    virtual int interp() override;
+    virtual bool has_variable() override;
+    virtual Expr* subst(const std::string& varName, Expr* replacement) override;
 };
 
 //  ========================== ADD CLASS =======================  //
@@ -29,6 +36,9 @@ public:
     // Constructor
     Add(Expr *lhs, Expr *rhs);
     virtual bool equals(Expr* e) override ;
+    virtual int interp() override;
+    virtual bool has_variable() override;
+    virtual Expr* subst(const std::string& varName, Expr* replacement) override;
 };
 
 //  ========================== MULT CLASS =======================  //
@@ -41,6 +51,10 @@ public:
     Mult(Expr *lhs, Expr *rhs);
     // Implement the equals function
     virtual bool equals(Expr* e) override;
+    virtual int interp() override;
+    virtual bool has_variable() override;
+    virtual Expr* subst(const std::string& varName, Expr* replacement) override;
+    
 };
 
 //  ======================= Variable CLASS =====================  //
@@ -52,6 +66,9 @@ public:
     Variable(const std::string name);
     // Implementation of equals method
     virtual bool equals(Expr *e) override;
+    virtual int interp() override;
+    virtual bool has_variable() override;
+    virtual Expr* subst(const std::string& varName, Expr* replacement) override;
 };
 #endif
 //  ========================== THE END =======================  //

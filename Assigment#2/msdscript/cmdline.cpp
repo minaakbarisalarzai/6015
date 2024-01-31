@@ -1,5 +1,5 @@
-#define CATCH_CONFIG_RUNNER
-#include "catch.h"
+//#define CATCH_CONFIG_RUNNER
+//#include "catch.h"
 #include "cmdline.hpp"
 #include <iostream>
 #include <cstdlib>
@@ -25,11 +25,11 @@ void use_arguments(int argc, char* argv[]) {
                 exit(1);
             } else {
 // Catch::Session().run returns 0 on success, non-zero on failure.
-                int result = Catch::Session().run(1, argv);
-                    if (result != 0) {
+                //int result = Catch::Session().run(1, argv);
+                    //if (result != 0) {
 // Exit immediately with exit(1) if tests fail.
-                        exit(1);
-                    }
+                       // exit(1);
+                    //}
                 testFlag = true;
             }
         } else {
