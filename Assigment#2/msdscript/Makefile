@@ -3,6 +3,8 @@ CXX = g++
 
 # Defines the compiler flags variable (CXXFLAGS) with options like -Wall (enable all warnings) and -std=c++11 (use C++11 standard).
 CXXFLAGS = -Wall -std=c++11
+test: msdscript
+	./msdscript --test
 all: $(SOURCES)
 # Specifies the target compileAndLink, which depends on the msdscript target.
 all: msdscript
@@ -31,9 +33,6 @@ Expr.o: Expr.cpp Expr.hpp
 # It compiles Test.cpp into the object file Test.o.
 Test.o: Test.cpp Test.hpp
 	$(CXX) $(CXXFLAGS) -c Test.cpp
-test: msdscript
-	./msdscript --test
-	
 # Specifies the clean target, which removes the executable msdscript and any object files (*.o).
 # This target is used to clean up after building.
 clean:
