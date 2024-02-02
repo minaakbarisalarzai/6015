@@ -17,8 +17,8 @@ msdscript: main.o cmdline.o Expr.o Test.o
 
 # Specifies the target main.o, which depends on main.cpp, cmdline.hpp, Expr.hpp, Num.hpp, Add.hpp, and Mult.hpp.
 # It compiles main.cpp into the object file main.o.
-main.o: main.cpp cmdline.hpp Expr.hpp 
-	$(CXX) $(CXXFLAGS) -c main.cpp
+main.o: Assignment2/msdscript/main.cpp cmdline.hpp Expr.hpp 
+	$(CXX) $(CXXFLAGS) -c Assignment2/msdscript/main.cpp
 
 # Specifies the target cmdline.o, which depends on cmdline.cpp and cmdline.hpp.
 # It compiles cmdline.cpp into the object file cmdline.o.
