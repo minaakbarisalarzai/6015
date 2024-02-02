@@ -18,6 +18,9 @@ msdscript: main.o cmdline.o Expr.o Test.o
 # It compiles main.cpp into the object file main.o.
 main.o: main.cpp cmdline.hpp Expr.hpp 
 	$(CXX) $(CXXFLAGS) -c main.cpp
+# Add a rule for main.cpp
+main.cpp: cmdline.hpp Expr.hpp
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
 # Specifies the target cmdline.o, which depends on cmdline.cpp and cmdline.hpp.
 # It compiles cmdline.cpp into the object file cmdline.o.
