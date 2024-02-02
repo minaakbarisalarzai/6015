@@ -3,7 +3,7 @@ CXX = g++
 
 # Defines the compiler flags variable (CXXFLAGS) with options like -Wall (enable all warnings) and -std=c++11 (use C++11 standard).
 CXXFLAGS = -Wall -std=c++11
-
+all: $(SOURCES)
 # Specifies the target compileAndLink, which depends on the msdscript target.
 all: msdscript
 
