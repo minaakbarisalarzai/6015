@@ -31,7 +31,7 @@ Expr.o: Expr.cpp Expr.hpp
 # It compiles Test.cpp into the object file Test.o.
 Test.o: Test.cpp Test.hpp
 	$(CXX) $(CXXFLAGS) -c Test.cpp
-Test: msdscript
+test: msdscript
 	./msdscript --test
 	
 # Specifies the clean target, which removes the executable msdscript and any object files (*.o).
