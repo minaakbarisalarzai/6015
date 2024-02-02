@@ -5,7 +5,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++11
 test: msdscript
 	./msdscript --test
-all: $(SOURCES)
+
 # Specifies the target compileAndLink, which depends on the msdscript target.
 all: msdscript
 
