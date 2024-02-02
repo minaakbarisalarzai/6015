@@ -3,6 +3,7 @@ CXX = g++
 
 # Defines the compiler flags variable (CXXFLAGS) with options like -Wall (enable all warnings) and -std=c++11 (use C++11 standard).
 CXXFLAGS = -Wall -std=c++11
+.PHONY: test
 test: msdscript
 	./msdscript --test
 
@@ -16,7 +17,7 @@ msdscript: main.o cmdline.o Expr.o Test.o
 
 # Specifies the target main.o, which depends on main.cpp, cmdline.hpp, Expr.hpp, Num.hpp, Add.hpp, and Mult.hpp.
 # It compiles main.cpp into the object file main.o.
-main.o: cmdline.hpp Expr.hpp 
+main.o: main.cpp cmdline.hpp Expr.hpp 
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
 # Specifies the target cmdline.o, which depends on cmdline.cpp and cmdline.hpp.
